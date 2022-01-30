@@ -1,3 +1,6 @@
+/* GOGGLE FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&family=Barlow:wght@100;200;300;400;500;600&family=Bellefair&display=swap');
+
 /* ------------------CUSTOM PROPERTIES------------------ */
 :root {
     /* colors */
@@ -22,14 +25,21 @@
 }
 
 
-
-
-/* -----------------RESET-------------------- */
+/* -----------------RESETS-------------------- */
 /* box sixing */
 *,
 *::before,
 *::after {
     box-sizing: border-box;
+}
+
+/* form reset */
+input,
+button,
+text,
+textarea,
+select {
+    font: inherit;
 }
 
 /* reset margins */
@@ -46,6 +56,7 @@ picture {
     margin: 0;
 }
 
+/* reset font weights */
 h1,
 h2,
 h3,
@@ -55,7 +66,6 @@ h6,
 p {
     font-weight: 400;
 }
-
 
 
 /* ------------------UTILITY CLASSES------------------- */
@@ -95,10 +105,111 @@ p {
 }
 
 
+/* ------------------COMPONENTS------------------- */
+.large-btn {
+    position: relative;
+    display: grid;
+    z-index: 1;
+    place-items: center;
+    padding: 0 2em;
+    border-radius: 50%;
+    aspect-ratio: 1;    /* modern way to size */
+    text-decoration: none;
+}
+
+.large-btn::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: hsl( var(--white) / .15);
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 500ms linear, transform 500ms ease-in-out;
+}
+
+.large-btn:hover::after,
+.large-btn:focus::after {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+.primary-nav {
+    --gap: 6rem;
+    --underline-gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.primary-nav a {
+    text-decoration: none;
+}
+
+.primary-nav a > span {
+    font-weight: 700;
+    margin-right: .5em;
+}
+
+.underline-indicators > * {
+    padding: var(--underline-gap, 1em) 0;
+    border: 0;
+    cursor: pointer;
+    border-bottom: .2rem solid hsl(var(--white) / 0);
+}
+
+.underline-indicators > *:hover,
+.underline-indicators > *:focus {
+    border-color: hsl( var(--white) / .25);
+}
+
+.underline-indicators > .active,
+.underline-indicators > [aria-selected="true"] {
+    color: hsl( var(--white) / 1);
+    border-color: hsl( var(--white) / 1);
+}
+
+.tab-list {
+    --gap: 2rem;
+}
+
+.dot-indicators > * {
+    cursor: pointer;
+    border: 0;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    padding: .5em;
+    background-color: hsl( var(--white) / .25);
+}
+
+.dot-indicators > *:hover,
+.dot-indicators > *:focus {
+    background-color: hsl( var(--white) / .5);
+}
+
+.dot-indicators > [aria-selected="true"] {
+    background-color: hsl( var(--white) / 1);
+}
+
+.number-indicators > * {
+    border-radius: 50%;
+    aspect-ratio: 1;
+    background-color: hsl( var(--dark) / 1);
+}
+
+.number-indicators > [aria-selected="true"] {
+    background-color: hsl( var(--white) / 1);
+}
+
+.number-indicators > *:hover,
+.number-indicators > *:focus {
+    background-color: hsl( var(--white) / 1);
+}
+
 /* ------------------------------------- */
 
 /* body setup */
-
 body {
     font-family: var(--ff-sans-normal);
     font-size: var(--fs-400);
@@ -115,14 +226,6 @@ picture {
     display: block;
 }
 
-/* form reset */
-input,
-button,
-text,
-textarea,
-select {
-    font: inherit;
-}
 
 /* remove animations if opted out */
 @media (prefers-reduced-motion: reduce) {
@@ -137,9 +240,7 @@ select {
 }
 
 
-
 /* COLORS */
-
 .bg-dark { background-color: hsl( var(--dark)); }
 .bg-light { background-color: hsl( var(--light)); }
 .bg-white { background-color: hsl( var(--white)); }
@@ -149,7 +250,6 @@ select {
 
 
 /* TYPOGRAPHY */
-
 .ff-serif { font-family: var(--ff-serif); } 
 .ff-sans-cond { font-family: var(--ff-sans-cond); } 
 .ff-sans-normal { font-family: var(--ff-sans-normal); } 
@@ -191,3 +291,4 @@ select {
     font-weight: 700;
     color: hsl( var(--white) / .25);
 }
+
