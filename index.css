@@ -1,0 +1,294 @@
+/* GOGGLE FONT IMPORT */
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100;200;300;400;500;600;700&family=Barlow:wght@100;200;300;400;500;600&family=Bellefair&display=swap');
+
+/* ------------------CUSTOM PROPERTIES------------------ */
+:root {
+    /* colors */
+    --dark: 230 35% 7%;
+    --light: 231 77% 90%;
+    --white: 0 0% 100%;
+
+    /* font sizes */
+    --fs-900: 9.375rem;
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-500: 1.75rem;
+    --fs-400: 1.125rem;
+    --fs-300: 1rem;
+    --fs-200: 0.875rem;
+
+    /* font family */
+    --ff-serif: "Bellefair", serif;
+    --ff-sans-cond: "Barlow Condensed", sans-serif;
+    --ff-sans-normal: "Barlow", sans-serif;
+}
+
+
+/* -----------------RESETS-------------------- */
+/* box sixing */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* form reset */
+input,
+button,
+text,
+textarea,
+select {
+    font: inherit;
+}
+
+/* reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+picture {
+    margin: 0;
+}
+
+/* reset font weights */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: 400;
+}
+
+
+/* ------------------UTILITY CLASSES------------------- */
+.flex {
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+
+.grid {
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+
+.container {
+    margin-inline: auto;
+    padding-inline: 2em;
+    max-width: 80rem;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap; /* added line */
+    border: 0;
+}
+
+/* *:not(:first/last-child) like usual to target adjacent siblings */
+/* where() used to group, better for lower specificity  ie card :where(h1,h2,h3) */
+
+.flow > *:where(:not(:first-child)) {
+    margin-top: var(--flow-space, 1rem);
+}
+
+
+/* ------------------COMPONENTS------------------- */
+.large-btn {
+    position: relative;
+    display: grid;
+    z-index: 1;
+    place-items: center;
+    padding: 0 2em;
+    border-radius: 50%;
+    aspect-ratio: 1;    /* modern way to size */
+    text-decoration: none;
+}
+
+.large-btn::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    background: hsl( var(--white) / .15);
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 500ms linear, transform 500ms ease-in-out;
+}
+
+.large-btn:hover::after,
+.large-btn:focus::after {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+.primary-nav {
+    --gap: 6rem;
+    --underline-gap: 2rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.primary-nav a {
+    text-decoration: none;
+}
+
+.primary-nav a > span {
+    font-weight: 700;
+    margin-right: .5em;
+}
+
+.underline-indicators > * {
+    padding: var(--underline-gap, 1em) 0;
+    border: 0;
+    cursor: pointer;
+    border-bottom: .2rem solid hsl(var(--white) / 0);
+}
+
+.underline-indicators > *:hover,
+.underline-indicators > *:focus {
+    border-color: hsl( var(--white) / .25);
+}
+
+.underline-indicators > .active,
+.underline-indicators > [aria-selected="true"] {
+    color: hsl( var(--white) / 1);
+    border-color: hsl( var(--white) / 1);
+}
+
+.tab-list {
+    --gap: 2rem;
+}
+
+.dot-indicators > * {
+    cursor: pointer;
+    border: 0;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    padding: .5em;
+    background-color: hsl( var(--white) / .25);
+}
+
+.dot-indicators > *:hover,
+.dot-indicators > *:focus {
+    background-color: hsl( var(--white) / .5);
+}
+
+.dot-indicators > [aria-selected="true"] {
+    background-color: hsl( var(--white) / 1);
+}
+
+.number-indicators > * {
+    border-radius: 50%;
+    aspect-ratio: 1;
+    background-color: hsl( var(--dark) / 1);
+}
+
+.number-indicators > [aria-selected="true"] {
+    background-color: hsl( var(--white) / 1);
+}
+
+.number-indicators > *:hover,
+.number-indicators > *:focus {
+    background-color: hsl( var(--white) / 1);
+}
+
+/* ------------------------------------- */
+
+/* body setup */
+body {
+    font-family: var(--ff-sans-normal);
+    font-size: var(--fs-400);
+    color: hsl(var(--white));
+    background-color: hsl( var(--dark));
+    line-height: 1.5;
+    min-height: 100vh;
+}
+
+/* images sizing */
+img,
+picture {
+    max-width: 100%;
+    display: block;
+}
+
+
+/* remove animations if opted out */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* COLORS */
+.bg-dark { background-color: hsl( var(--dark)); }
+.bg-light { background-color: hsl( var(--light)); }
+.bg-white { background-color: hsl( var(--white)); }
+.text-dark { color: hsl( var(--dark)); }
+.text-light { color: hsl( var(--light)); }
+.text-white { color: hsl( var(--white)); }
+
+
+/* TYPOGRAPHY */
+.ff-serif { font-family: var(--ff-serif); } 
+.ff-sans-cond { font-family: var(--ff-sans-cond); } 
+.ff-sans-normal { font-family: var(--ff-sans-normal); } 
+
+
+.letter-spacing-1 { letter-spacing: 4.75px; } 
+.letter-spacing-2 { letter-spacing: 2.7px; } 
+.letter-spacing-3 { letter-spacing: 2.35px; } 
+
+
+.uppercase { text-transform: uppercase; }
+
+.fs-900 { font-size: var(--fs-900); }
+.fs-800 { font-size: var(--fs-800); }
+.fs-700 { font-size: var(--fs-700); }
+.fs-600 { font-size: var(--fs-600); }
+.fs-500 { font-size: var(--fs-500); }
+.fs-400 { font-size: var(--fs-400); }
+.fs-300 { font-size: var(--fs-300); }
+.fs-200 { font-size: var(--fs-200); }
+
+/* bigger line heights on larger font sizes */
+.fs-900,
+.fs-800,
+.fs-700,
+.fs-600 {
+    line-height: 1.1;
+}
+
+.numbered-title {
+    font-family: var(--ff-sans-cond);
+    font-size: var(--fs-500);
+    text-transform: uppercase;
+    letter-spacing: 4.72px;
+}
+
+.numbered-title span {
+    margin-right: .5em;
+    font-weight: 700;
+    color: hsl( var(--white) / .25);
+}
+
